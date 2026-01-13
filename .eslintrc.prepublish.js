@@ -1,17 +1,13 @@
 module.exports = {
-	root: true,
-	parser: '@typescript-eslint/parser',
-	parserOptions: {
-		ecmaVersion: 2020,
-		sourceType: 'module',
-	},
-	extends: [
-		'eslint:recommended',
-		'plugin:n8n-nodes-base/nodes',
+	extends: './.eslintrc.js',
+
+	overrides: [
+		{
+			files: ['package.json'],
+			plugins: ['eslint-plugin-n8n-nodes-base'],
+			rules: {
+				'n8n-nodes-base/community-package-json-name-still-default': 'error',
+			},
+		},
 	],
-	ignorePatterns: ['dist/**', 'node_modules/**'],
-	rules: {
-		'n8n-nodes-base/node-param-default-missing': 'error',
-		'n8n-nodes-base/node-param-description-missing': 'error',
-	},
 };
