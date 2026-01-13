@@ -1,0 +1,60 @@
+{
+  "name": "n8n-nodes-cove",
+  "version": "1.0.0",
+  "description": "n8n node to connect to Cove Data Protection API",
+  "keywords": [
+    "n8n-community-node-package",
+    "cove",
+    "backup",
+    "data protection"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/redanthrax/cove-node",
+  "author": {
+    "name": "redanthrax",
+    "email": "red@4c.gg"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redanthrax/cove-node.git"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.15"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "pnpm exec rimraf dist && pnpm exec tsc && pnpm exec gulp build:icons",
+    "dev": "pnpm exec tsc --watch",
+    "format": "pnpm exec prettier nodes credentials --write",
+    "lint": "pnpm exec eslint 'nodes/**/*.ts' 'credentials/**/*.ts' package.json",
+    "lintfix": "pnpm exec eslint 'nodes/**/*.ts' 'credentials/**/*.ts' package.json --fix",
+    "prepublishOnly": "pnpm run build && pnpm exec eslint -c .eslintrc.prepublish.js 'nodes/**/*.ts' 'credentials/**/*.ts' package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/CoveDataProtectionApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/CoveDataProtection/CoveDataProtection.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.0",
+    "@typescript-eslint/parser": "~8.32.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "gulp": "^5.0.0",
+    "prettier": "^3.5.3",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
