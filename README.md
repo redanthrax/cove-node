@@ -1,4 +1,4 @@
-# n8n-nodes-cove-data-protection
+# n8n-nodes-cove
 
 An n8n community node for integrating with Cove Data Protection (formerly N-able Backup) JSON-RPC API.
 
@@ -7,7 +7,7 @@ An n8n community node for integrating with Cove Data Protection (formerly N-able
 Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
 ```bash
-npm install n8n-nodes-cove-data-protection
+npm install n8n-nodes-cove
 ```
 
 ## Prerequisites
