@@ -6,7 +6,7 @@ export type CoveDataProtection = {
 export interface PartnerInfo {
 	Id: number;
 	Name: string;
-	Level: number;
+	Level: string;
 	ParentId: number;
 	ExternalCode?: string;
 	ReferenceNumber?: string;
