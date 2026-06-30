@@ -6,10 +6,11 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const updateFields = this.getNodeParameter('updateFields', index, {}) as IDataObject;
 
 	const params: IDataObject = {
-		partner: {
+		partnerInfo: {
 			Id: partnerId,
 			...updateFields,
 		},
+		forceRemoveCustomColumnValuesInOldScope: false,
 	};
 
 	const result = await jsonRpcRequest.call(this, 'ModifyPartner', params);

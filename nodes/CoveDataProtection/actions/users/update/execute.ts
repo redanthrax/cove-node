@@ -6,7 +6,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const updateFields = this.getNodeParameter('updateFields', index, {}) as IDataObject;
 
 	const params: IDataObject = {
-		user: {
+		userInfo: {
 			Id: userId,
 			...updateFields,
 		},

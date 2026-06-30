@@ -9,9 +9,9 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const additionalFields = this.getNodeParameter('additionalFields', index, {}) as IDataObject;
 
 	const params: IDataObject = {
-		parentId,
 		createDefaultAccount,
-		partner: {
+		partnerInfo: {
+			ParentId: parentId,
 			Name: name,
 			Level: level,
 			...additionalFields,

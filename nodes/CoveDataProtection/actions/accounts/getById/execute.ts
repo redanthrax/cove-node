@@ -5,7 +5,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const accountId = this.getNodeParameter('accountId', index) as number;
 
 	const params: IDataObject = {
-		id: accountId,
+		accountId,
 	};
 
 	const result = await jsonRpcRequest.call(this, 'GetAccountInfoById', params);

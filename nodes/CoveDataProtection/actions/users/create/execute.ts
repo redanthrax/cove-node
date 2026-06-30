@@ -11,8 +11,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const additionalFields = this.getNodeParameter('additionalFields', index, {}) as IDataObject;
 
 	const params: IDataObject = {
-		partnerId,
-		user: {
+		userInfo: {
 			Name: name,
 			EmailAddress: emailAddress,
 			Password: password,

@@ -5,7 +5,7 @@ export async function execute(this: IExecuteFunctions): Promise<IDataObject[]> {
 	const partnerId = await getPartnerId.call(this);
 
 	const params: IDataObject = {
-		partnerId,
+		partnerIds: [partnerId],
 	};
 
 	const result = await jsonRpcRequest.call(this, 'EnumerateUsers', params);

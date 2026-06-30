@@ -8,6 +8,6 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 		userId,
 	};
 
-	const result = await jsonRpcRequest.call(this, 'GetUserInfo', params);
+	const result = await jsonRpcRequest.call(this, 'GetUserInfoById', params);
 	return result;
 }
