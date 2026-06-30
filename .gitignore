@@ -1,10 +1,28 @@
-node_modules/
-dist/
+# Node.js dependencies
+/node_modules
+.pnpm-store
+
+# Other package managers (this repo uses pnpm only — see SECURITY.md)
+package-lock.json
+yarn.lock
+npm-shrinkwrap.json
+bun.lock
+bun.lockb
+
+# Build output
+/dist
+/build
+/lib
+
+# Logs, local env, and temporary files
 *.log
 .DS_Store
-*.swp
-*.swo
-*~
-.vscode/
-.idea/
-bruno/environments/Dev.bru
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace

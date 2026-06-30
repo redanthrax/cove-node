@@ -7,6 +7,7 @@ import {
 	ILoadOptionsFunctions,
 	INodeExecutionData,
 	INodePropertyOptions,
+	NodeConnectionTypes,
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
@@ -26,8 +27,9 @@ export class CoveDataProtection implements INodeType {
 		defaults: {
 			name: 'Cove Data Protection',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
+		usableAsTool: true,
 		credentials: [
 			{
 				name: 'coveDataProtectionApi',
