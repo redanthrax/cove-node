@@ -50,7 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@n8n/eslint-plugin-community-nodes": "0.21.0",
+    "@n8n/eslint-plugin-community-nodes": "0.22.0",
     "@types/node": "26.0.1",
     "@typescript-eslint/parser": "8.62.1",
     "eslint": "10.6.0",
