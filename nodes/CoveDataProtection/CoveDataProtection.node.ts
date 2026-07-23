@@ -86,7 +86,13 @@ export class CoveDataProtection implements INodeType {
 					}
 				}
 
-				return partners.sort((a, b) => a.name.localeCompare(b.name));
+				partners.sort((a, b) => a.name.localeCompare(b.name));
+				partners.unshift({
+					name: 'All Partners (Top Level)',
+					value: parentPartnerId,
+				});
+
+				return partners;
 			},
 		},
 	};
