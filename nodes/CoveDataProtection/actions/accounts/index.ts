@@ -1,12 +1,13 @@
 import * as getAll from './getAll';
 import * as getById from './getById';
 import * as getStatistics from './getStatistics';
+import * as getBackupStatistics from './getBackupStatistics';
 import * as create from './create';
 import * as update from './update';
 import * as deleteAccount from './delete';
 import { INodeProperties } from 'n8n-workflow';
 
-export { getAll, getById, getStatistics, create, update, deleteAccount as delete };
+export { getAll, getById, getStatistics, getBackupStatistics, create, update, deleteAccount as delete };
 
 export const description: INodeProperties[] = [
 	{
@@ -31,6 +32,12 @@ export const description: INodeProperties[] = [
 				value: 'delete',
 				description: 'Delete an account',
 				action: 'Delete an account',
+			},
+			{
+				name: 'Get Backup Statistics',
+				value: 'getBackupStatistics',
+				description: 'Enumerate backup statistics (most recent backup date and status per data source) for devices',
+				action: 'Get account backup statistics',
 			},
 			{
 				name: 'Get by ID',
@@ -62,6 +69,7 @@ export const description: INodeProperties[] = [
 	...getAll.description,
 	...getById.description,
 	...getStatistics.description,
+	...getBackupStatistics.description,
 	...create.description,
 	...update.description,
 	...deleteAccount.description,

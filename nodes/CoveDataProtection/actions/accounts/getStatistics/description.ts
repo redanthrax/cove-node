@@ -80,8 +80,8 @@ export const getStatisticsDescription: INodeProperties[] = [
 						value: 'Merged',
 					},
 					{
-						name: 'Detailed',
-						value: 'Detailed',
+						name: 'Detailed (Per Installation)',
+						value: 'PerInstallation',
 					},
 				],
 				default: 'Merged',
