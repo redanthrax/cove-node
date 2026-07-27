@@ -14,5 +14,9 @@ updates:
     commit-message:
       prefix: chore
       include: scope
+    # typescript-eslint peer range is still <6.1.0; TS 7 crashes lint (ts.Extension.Cjs).
+    ignore:
+      - dependency-name: typescript
+        versions: ['>=7']
     # All Dependabot PRs must pass the "Supply chain security" workflow before merge
     # (enable required status checks on master in GitHub branch protection).
