@@ -1,5 +1,5 @@
 export type CoveDataProtection = {
-	resource: 'partners' | 'accounts' | 'users';
+	resource: 'partners' | 'accounts' | 'users' | 'installation';
 	operation: string;
 };
 

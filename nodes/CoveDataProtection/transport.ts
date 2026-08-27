@@ -3,6 +3,7 @@ import {
 	IExecuteFunctions,
 	IHookFunctions,
 	ILoadOptionsFunctions,
+	IHttpRequestMethods,
 	IHttpRequestOptions,
 	NodeApiError,
 } from 'n8n-workflow';
@@ -156,6 +157,41 @@ export async function jsonRpcRequest(
 
 		return response.result;
 	} catch (error) {
+		throw new NodeApiError(this.getNode(), error);
+	}
+}
+
+export async function restRequest(
+	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions,
+	method: IHttpRequestMethods,
+	path: string,
+	body?: IDataObject,
+	retried = false,
+): Promise<any> {
+	const visa = await getVisa.call(this);
+
+	const options: IHttpRequestOptions = {
+		method,
+		url: `https://api.backup.management${path}`,
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${visa}`,
+		},
+		json: true,
+	};
+
+	if (body !== undefined) {
+		options.body = body;
+	}
+
+	try {
+		return await this.helpers.httpRequest(options);
+	} catch (error) {
+		if (!retried && (error.statusCode === 401 || error.httpCode === '401')) {
+			visaCache = null;
+			return await restRequest.call(this, method, path, body, true);
+		}
+
 		throw new NodeApiError(this.getNode(), error);
 	}
 }

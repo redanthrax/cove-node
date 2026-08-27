@@ -3,6 +3,7 @@ import { CoveDataProtection } from './Interfaces';
 import * as partners from './partners';
 import * as accounts from './accounts';
 import * as users from './users';
+import * as installation from './installation';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const items = this.getInputData();
@@ -28,6 +29,9 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 					break;
 				case 'users':
 					responseData = await (users as any)[cove.operation].execute.call(this, i);
+					break;
+				case 'installation':
+					responseData = await (installation as any)[cove.operation].execute.call(this, i);
 					break;
 				default:
 					break;
