@@ -1,37 +1,37 @@
-import { IExecuteFunctions, IDataObject, NodeOperationError } from 'n8n-workflow';
+import {
+	IExecuteFunctions,
+	IDataObject,
+	NodeOperationError,
+	tryToParseDateTime,
+} from 'n8n-workflow';
 import { restRequest } from '../../../transport';
 
 // The console only ever sends "Initial", so it is not worth a UI field. Override it
 // through Extra Properties if another type turns up.
 const INSTALLATION_TYPE = 'Initial';
 
-// The API wants Unix seconds. n8n's dateTime picker hands over an ISO string, but an
-// expression may already resolve to a timestamp, so accept either.
+// The API wants Unix seconds. tryToParseDateTime takes the ISO string the dateTime
+// picker produces, and a Luxon DateTime straight from an expression. It rejects a bare
+// epoch, which is deliberate: converting one is the expression's job, and guessing
+// would mean guessing seconds against milliseconds too.
 function toUnixSeconds(
 	context: IExecuteFunctions,
 	value: string | number,
 	index: number,
 ): number {
-	if (typeof value === 'number') {
-		return Math.floor(value);
-	}
-
-	const trimmed = (value ?? '').trim();
-
-	if (/^\d+$/.test(trimmed)) {
-		return Number(trimmed);
-	}
-
-	const parsed = Date.parse(trimmed);
-	if (Number.isNaN(parsed)) {
+	try {
+		return Math.floor(tryToParseDateTime(value, context.getTimezone()).toSeconds());
+	} catch {
 		throw new NodeOperationError(
 			context.getNode(),
-			`Installer Expiry Date is not a valid date: ${value}`,
-			{ itemIndex: index },
+			`'Installer Expiry Date' expects a date but we got '${String(value)}'`,
+			{
+				description:
+					'To use a Unix timestamp, convert it in an expression first, for example {{ DateTime.fromSeconds(1788148800) }}.',
+				itemIndex: index,
+			},
 		);
 	}
-
-	return Math.floor(parsed / 1000);
 }
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<IDataObject> {

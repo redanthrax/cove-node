@@ -117,7 +117,7 @@ export const generateTokenDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'When the installer stops working. Sent to the API as a Unix timestamp in seconds; an expression returning one directly is also accepted.',
+		description: 'When the installer stops working. Sent to the API as a Unix timestamp in seconds. To supply a timestamp directly, convert it in an expression, for example {{ DateTime.fromSeconds(1788148800) }}.',
 		required: true,
 	},
 	{
