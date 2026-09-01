@@ -10,7 +10,7 @@ overrides:
   minimatch: 10.2.5
   form-data: 4.0.6
   brace-expansion: 5.0.9
-  nanoid: 3.3.17
+  nanoid: 3.3.18
 
 importers:
 
@@ -1065,8 +1065,8 @@ packages:
   nan@2.28.0:
     resolution: {integrity: sha512-fTsDz99OTq2sVePhGdp4qQhggZFtKr64ZNVyVajRKtMOkJxYekplBh577PiJB12v/D3s2E5cGtOI45LWp6rnLQ==}
 
-  nanoid@3.3.17:
-    resolution: {integrity: sha512-xQLf0A3HOMlgHq0n247/LRuAOYmB7dXJ/DvAxGvsSBij45XtBSmQycu+F8ODbHwns/XyFZagyL1+J0Offw1E0g==}
+  nanoid@3.3.18:
+    resolution: {integrity: sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -1649,7 +1649,7 @@ snapshots:
   '@n8n/utils@1.42.0':
     dependencies:
       '@n8n/constants': 0.33.0
-      nanoid: 3.3.17
+      nanoid: 3.3.18
 
   '@opentelemetry/api-logs@0.220.0':
     dependencies:
@@ -2623,7 +2623,7 @@ snapshots:
   nan@2.28.0:
     optional: true
 
-  nanoid@3.3.17: {}
+  nanoid@3.3.18: {}
 
   natural-compare@1.4.0: {}
 

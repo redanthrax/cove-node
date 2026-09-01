@@ -9,7 +9,7 @@ overrides:
   minimatch: '10.2.5'
   form-data: '4.0.6'
   brace-expansion: '5.0.9'
-  nanoid: '3.3.17'
+  nanoid: '3.3.18'
 
 # Only these packages may run install/build lifecycle scripts (Mini Shai-Hulud defense).
 onlyBuiltDependencies:
