@@ -81,6 +81,10 @@ Comprehensive user management operations:
 - **Get Many** - Enumerate users for a partner
 - **Update** - Update user information
 
+### Installation
+
+- **Generate Token** - Generate an agent installation token for a partner, returning `installationToken`
+
 ## API Authentication
 
 Cove Data Protection uses a visa-based authentication system:
@@ -88,6 +92,11 @@ Cove Data Protection uses a visa-based authentication system:
 - Receives a **visa** (session token) valid for 15 minutes
 - Each API response includes a new visa to maintain the session
 - The node automatically manages visa renewal and caching
+
+Most operations use the JSON-RPC endpoint at `https://api.backup.management/jsonapi`. The
+installation token operation uses the REST endpoint at
+`https://api.backup.management/agent/installation`, which takes the same visa as an
+`Authorization: Bearer` header.
 
 ## Resources
 
