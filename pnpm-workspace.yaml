@@ -11,6 +11,8 @@ overrides:
   brace-expansion: '5.0.12'
   nanoid: '3.3.18'
   axios: '1.20.0'
+  # GHSA-8r9p-f939-6h3c, GHSA-q3jh-wrc6-jgq8 (header leak on redirect) — dev-only via n8n-workflow > axios
+  follow-redirects: '1.16.1'
 
 # Only these packages may run install/build lifecycle scripts (Mini Shai-Hulud defense).
 onlyBuiltDependencies:
@@ -40,3 +42,10 @@ nodeVersion: 22.22.3
 
 # Require the pnpm version declared in package.json "packageManager" (pnpm 10: managePackageManagerVersions).
 managePackageManagerVersions: true
+
+# pnpm audit exceptions — same policy as osv-scanner.toml: dev-only, unshipped, no fix available.
+auditConfig:
+  ignoreGhsas:
+    # zod <4.6.6 memory exhaustion; zod 3.x has no patched release. Dev-only peer of
+    # n8n-workflow, never shipped. Revisit by 2027-01-24 or once n8n-workflow moves to zod >=4.6.6.
+    - GHSA-mrhx-c7xc-m3w5
