@@ -3,11 +3,13 @@ packages:
 
 # Supply-chain hardening (see SECURITY.md). Configured here — pnpm 10+ ignores package.json "pnpm".
 # Pin exact versions only (no >=/^/~ ranges). Bump deliberately with lockfile + audit.
+# Pinned versions must be >= 7 days old: Dependabot passes its cooldown to pnpm as
+# minimum-release-age=10080, which also applies to these pins, and fails every update otherwise.
 overrides:
   lodash: '4.18.1'
   uuid: '11.1.1'
   # GHSA-3g3m-2fjr-6pw4 (glob), GHSA-g3hv-75wg-m249 (minimatch) — dev-only via eslint / rimraf
-  minimatch: '11.0.4'
+  minimatch: '11.0.3'
   glob: '14.0.3'
   form-data: '4.0.6'
   brace-expansion: '5.0.12'
