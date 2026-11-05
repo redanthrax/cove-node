@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -31,7 +31,7 @@ jobs:
           version: 10.19.0
 
       - name: Setup Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '22.22.3'
           cache: pnpm
@@ -46,7 +46,7 @@ jobs:
         run: pnpm audit --audit-level=high
 
       - name: OSV vulnerability scan (lockfile)
-        uses: google/osv-scanner-action/osv-scanner-action@c5996e0193a3df57d695c1b8a1dec2a4c62e8730 # v2.3.3
+        uses: google/osv-scanner-action/osv-scanner-action@b1d267aea5211fa648d9d442fa64b90dbdcbdd36 # v2.7.0
         with:
           scan-args: |-
             --lockfile=pnpm-lock.yaml
