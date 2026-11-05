@@ -6,6 +6,9 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    # Wait a week before proposing new releases; most malicious npm publishes are caught and pulled within days.
+    cooldown:
+      default-days: 7
     groups:
       dev-dependencies:
         patterns:
@@ -20,3 +23,17 @@ updates:
         versions: ['>=7']
     # All Dependabot PRs must pass the "Supply chain security" workflow before merge
     # (enable required status checks on master in GitHub branch protection).
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns:
+          - '*'
+    commit-message:
+      prefix: ci
