@@ -3,23 +3,33 @@
 name: Release
 
 on:
+  # Tag push is the only automatic trigger. A `release: published` trigger was removed
+  # because publishing a GitHub release for an existing tag re-ran the publish job.
   push:
     tags:
       - '*.*.*'
-  release:
-    types: [published]
+  # Manual re-run of a failed publish; must be dispatched against a tag ref (enforced below).
   workflow_dispatch:
 
-permissions:
-  contents: read
-  id-token: write
+permissions: {}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
   publish:
+    name: Publish to npm
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: read # checkout
+      id-token: write # npm OIDC trusted publishing + provenance
     steps:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
 
       - name: Setup pnpm
         uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
@@ -30,12 +40,14 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22.22.3'
-          cache: pnpm
+          package-manager-cache: false
+          # No dependency cache in the release job: a cache written by another workflow
+          # could be poisoned and end up in the published artifact.
           # Do NOT set registry-url here — it writes _authToken=${NODE_AUTH_TOKEN} to .npmrc,
           # which can block OIDC trusted publishing and surface as a misleading 404 on publish.
 
       - name: Install npm for OIDC trusted publishing
-        run: npm install -g npm@11.5.1
+        run: npm install -g npm@11.5.1 # zizmor: ignore[adhoc-packages] exact version pin; npm >= 11.5.1 is required for OIDC
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
